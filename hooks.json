@@ -1,0 +1,9 @@
+
+[
+  {
+    "id": "deploy",
+    "execute-command": "/var/tmp/run.sh",
+    "command-working-directory": "/var/tmp",
+    "response-message": "Redeploying App server."
+  }
+]
