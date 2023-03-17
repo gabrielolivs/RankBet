@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  myapp:
+    image: leommjr/rankbet:latest
+    container_name: myapp
+    environment:
+      - MYSQL_DB_NAME=mydb
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=teste12345
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      - MYSQL_DATABASE=mydb
+      - MYSQL_ROOT_PASSWORD=teste12345
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=dbpass
+    ports:
+      - "3306:3306"
