@@ -53,9 +53,6 @@ public class LiveGamesService implements Serializable {
 
     public void refreshLiveGames() {
     	Response response = target.request(MediaType.APPLICATION_JSON).get();
-        liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());
-        //<p:poll interval="5" listener="#{myBean.refreshLiveGames}"
-        //update="liveGamesTable" />
-        
+        liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());        
     }
 }
