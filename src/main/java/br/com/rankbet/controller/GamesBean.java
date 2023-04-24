@@ -1,15 +1,18 @@
 package br.com.rankbet.controller;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.primefaces.PrimeFaces;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.rankbet.service.LiveGamesService;
-import br.com.rankbet.model.Game;
+import br.com.rankbet.model.game.Game;
 
 @Named
 @RequestScoped
@@ -21,6 +24,8 @@ public class GamesBean {
     private List<Game> games;
     private String searchTerm;
     private List<Game> filteredGames;
+
+    private Game selectedGame;
 
     
     public List<Game> getGames() {
@@ -50,11 +55,12 @@ public class GamesBean {
 
 	public void liveGames() {
     	games = liveGamesService.getAllLiveGames();
-    	filteredGames = games;
+    	filteredGames = new ArrayList<>(games);
     }
 
-    public void selectTeam(Game game, String team) {
-        System.out.println("Selected team: " + team + " for game: " + game.getTitle());
+    public void selectTeam(Game game, String team) throws IOException {
+        FacesContext.getCurrentInstance().getExternalContext()
+                .redirect("team.xhtml?id="+game.getId()+"&name="+team);
     }
 
     public void refreshLiveGames() {
@@ -70,6 +76,10 @@ public class GamesBean {
                 .filter(g -> g.getTitle().toLowerCase().contains(searchTerm.toLowerCase()))
                 .collect(Collectors.toList());
         }
+    }
+
+    public void getGameById(int id) {
+
     }
     
     

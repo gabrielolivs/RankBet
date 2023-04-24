@@ -1,4 +1,6 @@
-package br.com.rankbet.model;
+package br.com.rankbet.model.game;
+
+import br.com.rankbet.model.MarketAll;
 
 import java.io.Serializable;
 
@@ -7,6 +9,9 @@ public class Game implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+    private int id;
+
 	private String title;
     private String team1;
     private String team2;
@@ -17,8 +22,10 @@ public class Game implements Serializable {
     private int minute;
     private int seconds;
 
-    public Game(String title, String team1, String team2, int score1, int score2, String href, boolean isLive, int minute, int seconds) {
-    	this.title = title;
+
+    public Game(int id, String title, String team1, String team2, int score1, int score2, String href, boolean isLive, int minute, int seconds, MarketAll markets) {
+        this.id = id;
+        this.title = title;
         this.team1 = team1;
         this.team2 = team2;
         this.score1 = score1;
@@ -75,7 +82,8 @@ public class Game implements Serializable {
     }
 
     public String getHref() {
-        return href;
+        String[] site = href.split("/");
+        return site[2];
     }
 
     public void setHref(String href) {
@@ -106,13 +114,28 @@ public class Game implements Serializable {
         this.seconds = seconds;
     }
 
-	@Override
-	public String toString() {
-		return "Game [title=" + title + ", team1=" + team1 + ", team2=" + team2 + ", score1=" + score1 + ", score2="
-				+ score2 + ", href=" + href + ", isLive=" + isLive + ", minute=" + minute + ", seconds=" + seconds
-				+ "]";
-	}
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 
-    
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", team1='" + team1 + '\'' +
+                ", team2='" + team2 + '\'' +
+                ", score1=" + score1 +
+                ", score2=" + score2 +
+                ", href='" + href + '\'' +
+                ", isLive=" + isLive +
+                ", minute=" + minute +
+                ", seconds=" + seconds +
+                '}';
+    }
 }
