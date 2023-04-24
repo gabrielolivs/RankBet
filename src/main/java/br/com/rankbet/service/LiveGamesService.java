@@ -1,10 +1,6 @@
 package br.com.rankbet.service;
 
 
-import br.com.rankbet.model.Win1;
-import br.com.rankbet.model.Win2;
-import br.com.rankbet.model.game.GameAll;
-import br.com.rankbet.model.game.GameSbobet;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.WebTarget;
@@ -12,16 +8,17 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import br.com.rankbet.model.game.Game;
-import br.com.rankbet.utils.EndpointsEnum;
+import br.com.rankbet.model.Game;
 
 @ApplicationScoped
 public class LiveGamesService implements Serializable {
@@ -29,23 +26,22 @@ public class LiveGamesService implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final String API_TOKEN = "?token=bd207bc594534134b9c38e54847eb956aeab3bc378b54411bdc5245e1272b4af";
+	private final String API_TOKEN = "bd207bc594534134b9c38e54847eb956aeab3bc378b54411bdc5245e1272b4af";
     private Client client;
     private WebTarget target;
     private Jsonb jsonb;
 
     private List<Game> liveGames;
 
-    private final String LIVE_ENDPOINT = "/live/all";
-
-
-
     @PostConstruct
     public void init() {
+    	String URL = "https://api.betting-api.com/1xbet/football/live/all?token="+API_TOKEN;
         ClientConfig clientConfig = new ClientConfig()
                 .property(ClientProperties.CONNECT_TIMEOUT, 5000)
                 .property(ClientProperties.READ_TIMEOUT, 10000);
         client = ClientBuilder.newClient(clientConfig);
+        target = client.target(URL);
+        jsonb = JsonbBuilder.create();
         liveGames = new ArrayList<>();
         refreshLiveGames();
         
@@ -56,57 +52,7 @@ public class LiveGamesService implements Serializable {
     }
 
     public void refreshLiveGames() {
-        target = client.target(EndpointsEnum.XBET.getEndpoint()+LIVE_ENDPOINT+API_TOKEN);
-        jsonb = JsonbBuilder.create();
     	Response response = target.request(MediaType.APPLICATION_JSON).get();
-        liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());
+        liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());        
     }
-
-    public List<Game> getAllLiveOdds(int id, String team) {
-        List<Game> liveOddsfinal = new ArrayList<Game>();
-        for(EndpointsEnum endpoint : EndpointsEnum.values()){
-            List<Game> liveOdds = new ArrayList<Game>();
-            target = client.target(endpoint.getEndpoint()+LIVE_ENDPOINT+API_TOKEN);
-            jsonb = JsonbBuilder.create();
-            Response response = target.request(MediaType.APPLICATION_JSON).get();
-            if (getType(String.valueOf(endpoint)) == GameAll.class) {
-                liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<GameAll>() {
-                }.getClass().getGenericSuperclass());
-            }
-            else {
-                liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<GameSbobet>() {
-                }.getClass().getGenericSuperclass());
-            }
-            liveOdds.stream()
-                    .filter(odd -> odd.getTeam1().equals(team) || odd.getTeam2().equals(team))
-                    .forEach(liveOddsfinal::add);
-        }
-        for(Game game: liveOddsfinal){
-            if(game.getTeam1().equals(team))
-                break;
-            else {
-                if(game instanceof GameAll){
-                    GameAll game1 = (GameAll) game;
-                    double win1 = game1.getMarkets().getWin1();
-                    game1.getMarkets().setWin1(new Win1(game1.getMarkets().getWin2()));
-                    game1.getMarkets().setWin2(new Win2(win1));
-                }
-                else if(game instanceof GameSbobet){
-                    GameSbobet game1 = (GameSbobet) game;
-                    double win1 = game1.getMarkets().getWin1();
-                    game1.getMarkets().setWin1(game1.getMarkets().getWin2());
-                    game1.getMarkets().setWin2(win1);
-                }
-
-            }
-        }
-        return liveOddsfinal;
-    }
-
-    public Class<? extends Game> getType(String value){
-        if(value.equals("SBOBET"))
-            return GameSbobet.class;
-        else return GameAll.class;
-    }
-
 }
