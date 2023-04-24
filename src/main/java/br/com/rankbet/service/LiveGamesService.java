@@ -109,5 +109,4 @@ public class LiveGamesService implements Serializable {
             return GameSbobet.class;
         else return GameAll.class;
     }
-
 }
