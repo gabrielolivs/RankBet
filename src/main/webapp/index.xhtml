@@ -31,7 +31,7 @@
 			}
 </style>
 		<f:event type="postAddToView" listener="#{gamesBean.liveGames}" />
-		<h:form styleClass="p-m-3">
+		<h:form styleClass="p-m-3" id="myform">
 			<h:panelGrid columns="2" columnClasses="p-col-3,p-col-9">
 				<h:outputText value="Search:" styleClass="p-mr-2" />
 				<p:inputText value="#{gamesBean.searchTerm}" class="p-inputtext-sm">
@@ -65,6 +65,7 @@
 					</h:panelGrid>
 				</p:outputPanel>
 			</p:dataScroller>
+			<h:message for="liveGamesTable" />
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -1,6 +1,7 @@
 package br.com.rankbet.controller;
 
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
@@ -54,8 +55,12 @@ public class GamesBean {
 
 
 	public void liveGames() {
-    	games = liveGamesService.getAllLiveGames();
-    	filteredGames = new ArrayList<>(games);
+        try {
+            games = liveGamesService.getAllLiveGames();
+            filteredGames = new ArrayList<>(games);
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage("myform", new FacesMessage("Erro ao extrair dados da API"));
+        }
     }
 
     public void selectTeam(Game game, String team) throws IOException {
