@@ -104,6 +104,7 @@ public class LiveGamesService implements Serializable {
     }
 
     public Class<? extends Game> getType(String value){
+        //Append logic for other cases
         if(value.equals("SBOBET"))
             return GameSbobet.class;
         else return GameAll.class;
