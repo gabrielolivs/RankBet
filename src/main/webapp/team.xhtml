@@ -49,9 +49,11 @@
                     <h:panelGrid columns="2" columnClasses="p-col-6 p-col-6" styleClass="p-mt-2 p-justify-center">
                         <p:commandButton value="Vitória #{odd.markets.win1}"
                                          style="width: 150px; height: 100px; overflow: hidden;"
+                                         action="#{oddsBean.selectTeam(odd, odd.team1)}"
                                           />
                         <p:commandButton value="Derrota #{odd.markets.win2}"
                                          style="width: 150px; height: 100px; overflow: hidden;"
+                                         action="#{oddsBean.selectTeam(odd, odd.team1)}"
                                          />
                     </h:panelGrid>
                 </p:outputPanel>

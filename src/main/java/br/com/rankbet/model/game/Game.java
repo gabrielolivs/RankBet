@@ -118,6 +118,10 @@ public class Game implements Serializable {
         return id;
     }
 
+    public String getFullHref() {
+        return this.href;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
