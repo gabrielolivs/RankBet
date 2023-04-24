@@ -8,7 +8,6 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +34,5 @@ public class OddsBean {
 
     public void setOdds(List<Game> odds) {
         this.odds = odds;
-    }
-
-    public void selectTeam(Game game, String team) throws IOException {
-        System.out.println(game.getFullHref());
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect(game.getFullHref());
     }
 }

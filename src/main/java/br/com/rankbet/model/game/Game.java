@@ -6,13 +6,13 @@ import java.io.Serializable;
 
 public class Game implements Serializable {
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
     private int id;
 
-	private String title;
+    private String title;
     private String team1;
     private String team2;
     private int score1;
@@ -37,19 +37,19 @@ public class Game implements Serializable {
     }
 
     public Game() {
-		// TODO Auto-generated constructor stub
-	}
+        // TODO Auto-generated constructor stub
+    }
 
-    
+
     public String getTitle() {
-		return title;
-	}
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getTeam1() {
+    public String getTeam1() {
         return team1;
     }
 
@@ -142,3 +142,4 @@ public class Game implements Serializable {
                 ", seconds=" + seconds +
                 '}';
     }
+}
