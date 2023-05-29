@@ -3,6 +3,7 @@ package br.com.rankbet.service;
 
 import br.com.rankbet.model.Win1;
 import br.com.rankbet.model.Win2;
+import br.com.rankbet.model.api.BettingApi;
 import br.com.rankbet.model.game.GameAll;
 import br.com.rankbet.model.game.GameSbobet;
 import jakarta.ws.rs.client.Client;
@@ -29,15 +30,11 @@ public class LiveGamesService implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final String API_TOKEN = "?token=bd207bc594534134b9c38e54847eb956aeab3bc378b54411bdc5245e1272b4af";
     private Client client;
     private WebTarget target;
     private Jsonb jsonb;
 
     private List<Game> liveGames;
-
-    private final String LIVE_ENDPOINT = "/live/all";
-
 
 
     @PostConstruct
@@ -56,7 +53,7 @@ public class LiveGamesService implements Serializable {
     }
 
     public void refreshLiveGames() {
-        target = client.target(EndpointsEnum.XBET.getEndpoint()+LIVE_ENDPOINT+API_TOKEN);
+        target = client.target(EndpointsEnum.XBET.getEndpoint()+BettingApi.LIVE_ENDPOINT+BettingApi.API_TOKEN);
         jsonb = JsonbBuilder.create();
     	Response response = target.request(MediaType.APPLICATION_JSON).get();
         liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());
@@ -66,15 +63,15 @@ public class LiveGamesService implements Serializable {
         List<Game> liveOddsfinal = new ArrayList<Game>();
         for(EndpointsEnum endpoint : EndpointsEnum.values()){
             List<Game> liveOdds = new ArrayList<Game>();
-            target = client.target(endpoint.getEndpoint()+LIVE_ENDPOINT+API_TOKEN);
+            target = client.target(endpoint.getEndpoint()+BettingApi.LIVE_ENDPOINT+BettingApi.API_TOKEN);
             jsonb = JsonbBuilder.create();
             Response response = target.request(MediaType.APPLICATION_JSON).get();
-            if (getType(String.valueOf(endpoint)) == GameAll.class) {
-                liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<GameAll>() {
+            if (getType(String.valueOf(endpoint)) == GameSbobet.class) {
+                liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<GameSbobet>() {
                 }.getClass().getGenericSuperclass());
             }
             else {
-                liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<GameSbobet>() {
+                liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<GameAll>() {
                 }.getClass().getGenericSuperclass());
             }
             liveOdds.stream()
@@ -104,8 +101,9 @@ public class LiveGamesService implements Serializable {
     }
 
     public Class<? extends Game> getType(String value){
-        if(value.equals("SBOBET"))
+        if(value.equals("SBOBET")) {
             return GameSbobet.class;
+        }
         else return GameAll.class;
     }
 
