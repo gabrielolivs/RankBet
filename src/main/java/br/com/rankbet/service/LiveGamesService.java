@@ -4,6 +4,7 @@ package br.com.rankbet.service;
 import br.com.rankbet.model.Win1;
 import br.com.rankbet.model.Win2;
 import br.com.rankbet.model.api.BettingApi;
+import br.com.rankbet.model.api.BettingApi;
 import br.com.rankbet.model.game.GameAll;
 import br.com.rankbet.model.game.GameSbobet;
 import jakarta.ws.rs.client.Client;
