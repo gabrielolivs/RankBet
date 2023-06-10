@@ -2,9 +2,9 @@ package br.com.rankbet.utils;
 
 public enum BetType {
 
-    VITORIA("VICTORY"),
+    VICTORY("VICTORY"),
     DEFEAT("DEFEAT"),
-    ATIE("ATIE");
+    TIE("TIE");
 
     public String bet;
 
