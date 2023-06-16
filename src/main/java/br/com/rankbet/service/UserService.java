@@ -3,7 +3,7 @@ package br.com.rankbet.service;
 import br.com.rankbet.dao.UserDAO;
 import br.com.rankbet.model.UserModel;
 import br.com.rankbet.model.dto.UserDTO;
-import br.com.rankbet.security.PasswordUtil;
+import br.com.rankbet.utils.PasswordUtil;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.InvocationTargetException;
