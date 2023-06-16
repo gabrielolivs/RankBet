@@ -16,16 +16,18 @@ public class LoginDAO {
     }
     private static UserDAO userDAO;
 
-    public boolean authenticate(String email, String password) {
+    public UserModel authenticate(String email, String password) {
         entityManager.getTransaction().begin();
         try {
             UserModel userModel = userDAO.getByEmail(email);
             if (userModel.getUserPassword().equals(password)) {
-                return true; // Autenticação bem-sucedida
+                return userModel;// Autenticação bem sucedida
+            }else{
+                return null; // Autenticação falhou
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
-        return false; // Autenticação falhou
+        return null; // Autenticação falhou
     }
 }

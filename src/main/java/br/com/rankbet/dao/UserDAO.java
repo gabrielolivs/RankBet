@@ -36,7 +36,7 @@ public class UserDAO {
         UserModel usuario = null;
         entityManager.getTransaction().begin();
         try {
-            String hql = "FROM Usuario WHERE email = :email";
+            String hql = "FROM TBL_USER WHERE email = :email";
             Query query = entityManager.createQuery(hql, UserModel.class);
             query.setParameter("email", email);
             usuario = (UserModel) query.getSingleResult();

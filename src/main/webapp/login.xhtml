@@ -15,6 +15,7 @@
 
 <h:body style="background-color: black;">
 	<h:form id="loginForm">
+
 		<p:panelGrid columns="2" styleClass="col-left">
 			<p:outputPanel style="text-align: center;">
 				<p:graphicImage name="rankbet-logo.jpg" alt="login-animate" id="login-animate" width="70%" />
@@ -31,7 +32,7 @@
 						<p:password id="password" value="#{autenticatioBean.userDTO.userPassword}" name="senha" placeholder="Senha" required="true" />
 					</h:panelGrid>
 					<h:panelGrid columns="1">
-						<p:commandButton value="Entrar" styleClass="btn" actionListener="#{bean.login}" update="@form" />
+						<p:commandButton value="Entrar" styleClass="btn" actionListener="#{autenticatioBean.submit}" update="@form" />
 					</h:panelGrid>
 				</p:panelGrid>
 				<h:outputLink value="../cadastro/register.html" id="link-cadastro" styleClass="register-link">Cadastre-se</h:outputLink>
