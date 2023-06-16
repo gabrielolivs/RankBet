@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.*;
 
 import br.com.rankbet.model.game.Game;
-import br.com.rankbet.utils.EndpointsEnum;
+import br.com.rankbet.enums.EndpointsEnum;
 
 @ApplicationScoped
 public class LiveGamesService implements Serializable {

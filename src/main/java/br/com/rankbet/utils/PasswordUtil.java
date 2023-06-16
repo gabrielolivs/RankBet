@@ -1,4 +1,4 @@
-package br.com.rankbet.security;
+package br.com.rankbet.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,5 +19,4 @@ public class PasswordUtil {
         }
         return null;
     }
-
 }
