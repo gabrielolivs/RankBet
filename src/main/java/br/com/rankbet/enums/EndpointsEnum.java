@@ -1,4 +1,4 @@
-package br.com.rankbet.utils;
+package br.com.rankbet.enums;
 
 public enum EndpointsEnum {
     XBET("https://api.betting-api.com/1xbet/football"),
