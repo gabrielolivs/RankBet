@@ -14,7 +14,7 @@
 </h:head>
 
 <h:body style="background-color: black;">
-	<h:form id="loginForm" action="user_login.php">
+	<h:form id="loginForm">
 		<p:panelGrid columns="2" styleClass="col-left">
 			<p:outputPanel style="text-align: center;">
 				<p:graphicImage name="rankbet-logo.jpg" alt="login-animate" id="login-animate" width="70%" />
@@ -24,11 +24,11 @@
 					<p:graphicImage name="Screenshot_1-removebg-preview.png" alt="rankbet-name" width="280px" styleClass="rankbet-name" />
 					<h:panelGrid columns="1" styleClass="form">
 						<h:outputLabel for="email" value="E-mail" styleClass="form-label" />
-						<p:inputText id="email" name="email" placeholder="E-mail" required="true" />
+						<p:inputText id="email" value="#{autenticatioBean.userDTO.email}" name="email" placeholder="E-mail" required="true" />
 					</h:panelGrid>
 					<h:panelGrid columns="1" styleClass="form">
 						<h:outputLabel for="password" value="Senha" styleClass="form-label" />
-						<p:password id="password" name="senha" placeholder="Senha" required="true" />
+						<p:password id="password" value="#{autenticatioBean.userDTO.userPassword}" name="senha" placeholder="Senha" required="true" />
 					</h:panelGrid>
 					<h:panelGrid columns="1">
 						<p:commandButton value="Entrar" styleClass="btn" actionListener="#{bean.login}" update="@form" />
