@@ -13,8 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.faces.view.ViewScoped;
+
 @Named
-@RequestScoped
+@ViewScoped
 public class OddsBean {
 
     @Inject
@@ -38,4 +40,15 @@ public class OddsBean {
         this.odds = odds;
     }
 
+    public void openNewTab(String url) {
+
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+
+        try {
+            externalContext.redirect(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception if necessary
+        }
+    }
 }
