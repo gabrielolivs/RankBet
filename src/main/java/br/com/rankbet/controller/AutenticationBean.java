@@ -14,12 +14,13 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 @Named
 @ViewScoped
 @ManagedBean
-public class AutenticationBean {
+public class AutenticationBean implements Serializable {
 
     private UserDTO userDTO;
 
