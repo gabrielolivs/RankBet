@@ -21,7 +21,7 @@ import java.util.Optional;
 @ManagedBean
 public class AutenticationBean {
 
-    public UserDTO userDTO;
+    private UserDTO userDTO;
 
     private LoginService loginService;
 
@@ -34,6 +34,10 @@ public class AutenticationBean {
         userDTO= new UserDTO();
         loginService = new LoginService();
         roleService = new RoleService();
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
     public String submit(){

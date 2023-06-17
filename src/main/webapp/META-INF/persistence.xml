@@ -8,9 +8,9 @@
     <persistence-unit name="YourPersistenceUnitName" transaction-type="RESOURCE_LOCAL">
         <!-- Define your MySQL database connection properties -->
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dbname"/>
-            <property name="javax.persistence.jdbc.user" value="username"/>
-            <property name="javax.persistence.jdbc.password" value="password"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
+            <property name="javax.persistence.jdbc.user" value="dbuser"/>
+            <property name="javax.persistence.jdbc.password" value="dbpass"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 
             <!-- Hibernate specific properties -->

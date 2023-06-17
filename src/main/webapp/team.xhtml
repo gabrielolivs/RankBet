@@ -203,7 +203,7 @@
 				}
 			} 
         </style>
-        <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.id, param.name)}" />
+        <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.name)}" />
         <h:form styleClass="p-m-3" id="myform">
             <p:dataScroller id="liveOddsTable" value="#{oddsBean.odds}"
                             var="odd" chunkSize="10" styleClass="p-liveGamesTable">
@@ -214,10 +214,10 @@
 						</f:facet>
 					
 						<h:panelGrid columns="2" cellspacing="2" columnClasses="col-md-6 col-md-6" styleClass="p-mt-2 p-justify-center p-panelgrid">
-							<p:commandButton value="Vitória - #{odd.markets.win1}"
+							<p:commandButton value="Vitória - #{odd.win1}" action="#{oddsBean.openNewTab(odd.href)}"
 								style="width: 150px; height: 80px; overflow: hidden;"
 								styleClass="p-team-btn" />
-							<p:commandButton value="Derrota - #{odd.markets.win2}"
+							<p:commandButton value="Derrota - #{odd.win2}" action="#{oddsBean.openNewTab(odd.href)}"
 								style="width: 150px; height: 80px; overflow: hidden;" styleClass="p-team-btn"
 								 />
 						</h:panelGrid>

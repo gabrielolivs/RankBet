@@ -1,13 +1,13 @@
 package br.com.rankbet.enums;
 
 public enum EndpointsEnum {
-    XBET("https://api.betting-api.com/1xbet/football"),
-    SBOBET("https://api.betting-api.com/sbobet/football"),
-    BETWAY("https://api.betting-api.com/betway/football"),
-    GGBET("https://api.betting-api.com/ggbet/football"),
-    FONBET("https://api.betting-api.com/fonbet/football"),
-    MARATHONBET("https://api.betting-api.com/marathonbet/football"),
-    PARIMATCH("https://api.betting-api.com/parimatch/football");
+    XBET("http://api.rankbet.tech/1xbet"),
+    SBOBET("http://api.rankbet.tech/sbobet"),
+    BETWAY("http://api.rankbet.tech/betway"),
+    GGBET("http://api.rankbet.tech/ggbet"),
+    FONBET("http://api.rankbet.tech/fonbet"),
+    MARATHONBET("http://api.rankbet.tech/marathonbet"),
+    PARIMATCH("http://api.rankbet.tech/parimatch");
     public String endpoint;
     EndpointsEnum(String endpoint) {
         this.endpoint = endpoint;

@@ -8,6 +8,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +21,9 @@ public class OddsBean {
 
     private List<Game> odds;
 
-    public void liveOdds(int id, String team) {
+    public void liveOdds(String team) {
         try {
-            odds = liveGamesService.getAllLiveOdds(id, team);
+            odds = liveGamesService.getAllLiveOdds(team);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("myform", new FacesMessage("Erro ao extrair dados da API"));
         }
@@ -34,5 +35,14 @@ public class OddsBean {
 
     public void setOdds(List<Game> odds) {
         this.odds = odds;
+    }
+
+    public void openNewTab(String url) {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception if necessary
+        }
     }
 }
