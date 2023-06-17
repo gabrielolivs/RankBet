@@ -38,17 +38,4 @@ public class OddsBean {
         this.odds = odds;
     }
 
-    public void openNewTab(String url) {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-
-        try {
-            externalContext.redirect(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception if necessary
-        }
-
-        facesContext.responseComplete();
-    }
 }
