@@ -7,14 +7,14 @@ import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.faces.view.ViewScoped;
+import jakarta.enterprise.context.RequestScoped;
 
 import java.io.IOException;
 import java.util.List;
 
 
 @Named
-@ViewScoped
+@RequestScoped
 public class OddsBean implements java.io.Serializable {
 
     @Inject
