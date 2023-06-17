@@ -66,7 +66,7 @@ jobs:
           username: ${{ secrets.AWS_USER }}
                   
           # SSH key (copy it from your local machine)
-          key: ${{ secrets.AWS_KEY }}
+          password: ${{ secrets.AWS_KEY }}
           # SSH port
           port: ${{ secrets.AWS_PORT }}
           source: "docker-compose.yml,run.sh"
@@ -82,7 +82,7 @@ jobs:
           username: ${{ secrets.AWS_USER }}
                   
           # SSH key (copy it from your local machine)
-          key: ${{ secrets.AWS_KEY }}
+          password: ${{ secrets.AWS_KEY }}
           # SSH port
           port: ${{ secrets.AWS_PORT }}
           script: |
