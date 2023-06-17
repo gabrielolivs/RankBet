@@ -2,21 +2,20 @@ package br.com.rankbet.controller;
 
 import br.com.rankbet.model.game.Game;
 import br.com.rankbet.service.LiveGamesService;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
 @Named
-@SessionScoped
-public class OddsBean {
+@ViewScoped
+public class OddsBean implements java.io.Serializable {
 
     @Inject
     private LiveGamesService liveGamesService;
