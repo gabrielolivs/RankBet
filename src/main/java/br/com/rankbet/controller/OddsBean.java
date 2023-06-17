@@ -9,7 +9,6 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.enterprise.context.RequestScoped;
 
-import java.io.IOException;
 import java.util.List;
 
 
@@ -38,15 +37,4 @@ public class OddsBean implements java.io.Serializable {
         this.odds = odds;
     }
 
-    public void openNewTab(String url) {
-
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-
-        try {
-            externalContext.redirect(url);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Handle the exception if necessary
-        }
-    }
 }
