@@ -2,7 +2,7 @@ package br.com.rankbet.controller;
 
 import br.com.rankbet.model.game.Game;
 import br.com.rankbet.service.LiveGamesService;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
@@ -13,10 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.faces.view.ViewScoped;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class OddsBean {
 
     @Inject
