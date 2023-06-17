@@ -18,7 +18,6 @@ import java.util.*;
 
 import br.com.rankbet.model.game.Game;
 import br.com.rankbet.enums.EndpointsEnum;
-import br.com.rankbet.model.game.Games;
 
 @ApplicationScoped
 public class LiveGamesService implements Serializable {
@@ -52,7 +51,7 @@ public class LiveGamesService implements Serializable {
         target = client.target(EndpointsEnum.XBET.getEndpoint());
         jsonb = JsonbBuilder.create();
     	Response response = target.request(MediaType.APPLICATION_JSON).get();
-        liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Games>(){}.getClass().getGenericSuperclass());
+        liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());
     }
 
     public List<Game> getAllLiveOdds(String team) {
