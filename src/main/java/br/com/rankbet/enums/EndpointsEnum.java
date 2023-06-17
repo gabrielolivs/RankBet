@@ -7,6 +7,7 @@ public enum EndpointsEnum {
     GGBET("http://api.rankbet.tech/ggbet"),
     FONBET("http://api.rankbet.tech/fonbet"),
     MARATHONBET("http://api.rankbet.tech/marathonbet"),
+    PINNACLE("http://api.rankbet.tech/pinnacle"),
     PARIMATCH("http://api.rankbet.tech/parimatch");
     public String endpoint;
     EndpointsEnum(String endpoint) {
