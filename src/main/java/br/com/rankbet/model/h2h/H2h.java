@@ -8,19 +8,39 @@ public class H2h implements java.io.Serializable {
     private String team2;
     private int win1;
     private int win2;
+    private int goals1;
+    private int goals2;
     private int draw;
     private List<Match> matches;
 
-    public H2h(String team1, String team2, int win1, int win2, int draw, List<Match> matches) {
+    public H2h(String team1, String team2, int goals1, int goals2, int win1, int win2, int draw, List<Match> matches) {
         this.team1 = team1;
         this.team2 = team2;
         this.win1 = win1;
         this.win2 = win2;
+        this.goals1 = goals1;
+        this.goals2 = goals2;
         this.draw = draw;
         this.matches = matches;
     }
 
     public H2h() {
+    }
+
+    public int getGoals1() {
+        return goals1;
+    }
+
+    public int getGoals2() {
+        return goals2;
+    }
+
+    public void setGoals1(int goals1) {
+        this.goals1 = goals1;
+    }
+
+    public void setGoals2(int goals2) {
+        this.goals2 = goals2;
     }
 
     public String getTeam1() {
