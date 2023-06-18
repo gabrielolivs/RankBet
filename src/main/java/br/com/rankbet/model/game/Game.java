@@ -8,6 +8,7 @@ public class Game implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String betName;
     private String title;
     private String team1;
@@ -16,7 +17,7 @@ public class Game implements Serializable {
     private float win2;
     private String href;
 
-    public Game(String betName, String title, String team1, String team2, float win1, float win2, String href) {
+    public Game(String id, String betName, String title, String team1, String team2, float win1, float win2, String href) {
         this.title = title;
         this.team1 = team1;
         this.team2 = team2;
@@ -27,6 +28,14 @@ public class Game implements Serializable {
 
     public Game() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getBetName() {

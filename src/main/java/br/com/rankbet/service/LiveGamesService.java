@@ -54,7 +54,7 @@ public class LiveGamesService implements Serializable {
         liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());
     }
 
-    public List<Game> getAllLiveOdds(String team) {
+    public List<Game> getAllLiveOdds(String id) {
         List<Game> liveOddsfinal = new ArrayList<Game>();
         for(EndpointsEnum endpoint : EndpointsEnum.values()){
             List<Game> liveOdds = new ArrayList<Game>();
@@ -64,7 +64,7 @@ public class LiveGamesService implements Serializable {
             liveOdds = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>() {
                 }.getClass().getGenericSuperclass());
             liveOdds.stream()
-                    .filter(odd -> odd.getTeam1().equals(team) || odd.getTeam2().equals(team))
+                    .filter(odd -> odd.getId().equals(id))
                     .forEach(liveOddsfinal::add);
         }
         Collections.sort(liveOddsfinal, new Comparator<Game>() {

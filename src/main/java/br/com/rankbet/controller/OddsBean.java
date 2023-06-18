@@ -21,9 +21,9 @@ public class OddsBean implements java.io.Serializable {
 
     private List<Game> odds;
 
-    public void liveOdds(String team) {
+    public void liveOdds(String id) {
         try {
-            odds = liveGamesService.getAllLiveOdds(team);
+            odds = liveGamesService.getAllLiveOdds(id);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("myform", new FacesMessage("Erro ao extrair dados da API"));
         }

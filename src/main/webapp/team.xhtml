@@ -203,7 +203,7 @@
 				}
 			} 
         </style>
-        <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.name)}" />
+        <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.id)}" />
         <h:form styleClass="p-m-3" id="myform">
             <p:dataScroller id="liveOddsTable" value="#{oddsBean.odds}"
                             var="odd" chunkSize="10" styleClass="p-liveGamesTable">
