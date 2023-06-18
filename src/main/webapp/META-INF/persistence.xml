@@ -5,18 +5,12 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
 
-    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="YourPersistenceUnitName" transaction-type="RESOURCE_LOCAL">
         <!-- Define your MySQL database connection properties -->
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class> br.com.rankbet.model.UserModel</class>
-        <class> br.com.rankbet.model.LogModel</class>
-        <class> br.com.rankbet.model.RoleModel</class>
-        <class> br.com.rankbet.model.PropertiesModel</class>
-        <class> br.com.rankbet.model.SubscriptionModel</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/dbname"/>
-            <property name="javax.persistence.jdbc.user" value="root"/>
-            <property name="javax.persistence.jdbc.password" value="S@suked12"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mydb"/>
+            <property name="javax.persistence.jdbc.user" value="dbuser"/>
+            <property name="javax.persistence.jdbc.password" value="dbpass"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 
             <!-- Hibernate specific properties -->

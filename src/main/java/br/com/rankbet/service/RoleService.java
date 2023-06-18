@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public class RoleService {
 
-    private static RoleDAO roleDAO = new RoleDAO();
+    private static RoleDAO roleDAO;
 
     public Optional<RoleModel> getSubscription(long userId){
-        return Optional.ofNullable( roleDAO.findById(userId));
+        return roleDAO.getRole(userId);
     }
 
 }

@@ -99,20 +99,7 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.12</version>
         </dependency>
-        <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>black-tie</artifactId>
-            <version>1.0.10</version>
-        </dependency>
     </dependencies>
-    <repositories>
-        <repository>
-            <id>prime-repo</id>
-            <name>PrimeFaces Maven Repository</name>
-            <url>https://mvnrepository.com/artifact/org.primefaces.themes/black-tie </url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>

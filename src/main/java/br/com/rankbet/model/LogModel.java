@@ -1,9 +1,7 @@
 package br.com.rankbet.model;
 
+import jakarta.persistence.*;
 
-
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

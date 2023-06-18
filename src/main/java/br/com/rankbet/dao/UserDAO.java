@@ -1,46 +1,69 @@
 package br.com.rankbet.dao;
 
-import br.com.rankbet.dao.base.BaseDao;
-import br.com.rankbet.model.SubscriptionModel;
 import br.com.rankbet.model.UserModel;
+import br.com.rankbet.service.Manager;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
+public class UserDAO {
 
-public class UserDAO extends BaseDao<UserModel> {
+    private final EntityManager entityManager;
 
-    public UserDAO(){super(UserModel.class);}
-
-
-    public SubscriptionModel getSubscription(long userId) {
-        return  new SubscriptionModel();
+    public UserDAO(){
+        entityManager = Manager.getInstance().getEntityManager();
     }
 
-    public UserModel findByEmail(String email){
+    public void saveUser(UserModel userModel) {
+        entityManager.getTransaction().begin();
+        userModel.setCreateAt(LocalDateTime.now());
+        userModel.setUpdatedAt(LocalDateTime.now());
+        //verificar se atualiza somente os campos diferentes do que esta salvo na base ou diferentes de null
+        entityManager.persist(userModel);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
 
+    public void deleteUser(UserModel userModel){
+        entityManager.getTransaction().begin();
+        entityManager.remove(userModel);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
 
-        try{
-            CriteriaBuilder criteriaBuilder = this.getSession().getCriteriaBuilder();
-            CriteriaQuery<UserModel> criteriaQuery = criteriaBuilder.createQuery(persistentClass);
-            Root<UserModel> from = criteriaQuery.from(persistentClass);
-            List<Predicate> predicateList = new ArrayList<>();
-            predicateList.add(criteriaBuilder.equal(from.get("email"), email));
-            criteriaQuery.where(predicateList.toArray(new Predicate[0]));
-            TypedQuery<UserModel> q = this.getSession().createQuery(criteriaQuery);
-            return q.getSingleResult();
-        }
-        catch (Exception e){
+    public UserModel getByEmail(String email){
+        UserModel usuario = null;
+        entityManager.getTransaction().begin();
+        try {
+            String hql = "FROM TBL_USER WHERE email = :email";
+            Query query = entityManager.createQuery(hql, UserModel.class);
+            query.setParameter("email", email);
+            usuario = (UserModel) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
+        } finally {
+            entityManager.close();
         }
+        return usuario;
     }
 
+    public boolean existsEmail(String email) {
+        String existEmail;
+        entityManager.getTransaction().begin();
+        try {
+            String hql = "FROM Usuario WHERE email = :email";
+            Query query = entityManager.createQuery(hql, UserModel.class);
+            query.setParameter("email", email);
+            existEmail = String.valueOf(query.getFirstResult());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            entityManager.close();
+        }
+        return !existEmail.isEmpty();
+    }
 
 }
