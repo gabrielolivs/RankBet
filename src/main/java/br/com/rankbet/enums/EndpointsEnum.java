@@ -8,7 +8,8 @@ public enum EndpointsEnum {
     FONBET("http://api.rankbet.tech:8000/fonbet"),
     MARATHONBET("http://api.rankbet.tech:8000/marathonbet"),
     PINNACLE("http://api.rankbet.tech:8000/pinnacle"),
-    PARIMATCH("http://api.rankbet.tech:8000/parimatch");
+    PARIMATCH("http://api.rankbet.tech:8000/parimatch"),
+    FANDUEL("http://api.rankbet.tech:8000/fanduel");
     public String endpoint;
     EndpointsEnum(String endpoint) {
         this.endpoint = endpoint;

@@ -12,7 +12,8 @@ import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
-
+import java.util.Collections;
+import java.util.Comparator;
 import java.io.Serializable;
 import java.util.*;
 
@@ -67,6 +68,12 @@ public class LiveGamesService implements Serializable {
                     .filter(odd -> odd.getTeam1().equals(team) || odd.getTeam2().equals(team))
                     .forEach(liveOddsfinal::add);
         }
+        Collections.sort(liveOddsfinal, new Comparator<Game>() {
+            @Override
+            public int compare(Game game1, Game game2) {
+                return Float.compare(game1.getWin1(), game2.getWin1());
+            }
+        });
         return liveOddsfinal;
     }
 
