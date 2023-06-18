@@ -25,8 +25,6 @@ public class UserDAO extends BaseDao<UserModel> {
     }
 
     public UserModel findByEmail(String email){
-
-
         try{
             CriteriaBuilder criteriaBuilder = this.getSession().getCriteriaBuilder();
             CriteriaQuery<UserModel> criteriaQuery = criteriaBuilder.createQuery(persistentClass);

@@ -35,13 +35,15 @@ public class UserService {
         return false;
     }
 
-    public void updateUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
+    public boolean updateUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
         UserModel userModel = new UserModel();
         BeanUtils.copyProperties(userModel, userDTO);
         try {
             userDAO.save(userModel);
+            return true;
         } catch (BusinessException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return false;
         }
     }
 
@@ -62,6 +64,6 @@ public class UserService {
     }
 
     public UserModel getUser(String email){
-        return userDAO.findById(1);
+        return userDAO.findByEmail(email);
     }
 }
