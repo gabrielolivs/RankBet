@@ -48,23 +48,23 @@
 				<div class="p-grid">
 					<div class="p-col-6 m-2">
 						<h6 class="text-white text-left">Primeiro Nome</h6>
-						<p:inputText required="true" style="width: 22vw;" value="#{userDTO.firstName}"/>
+						<p:inputText required="true" style="width: 22vw;" value="#{updateDataBean.userDTO.firstName}"/>
 					</div>
 					<div class="p-col-6 m-2">
 						<h6 class="text-white text-left">Último Nome</h6>
-						<p:inputText required="true" style="width: 22vw;" value="#{userDTO.lastName}"/>
+						<p:inputText required="true" style="width: 22vw;" value="#{updateDataBean.userDTO.lastName}"/>
 					</div>
 				</div>
 				<div class="p-grid">
 					<div class="p-col-12">
 						<h6 class="text-white text-left">Nome de Usuário</h6>
-						<p:inputText required="true" style="width: 45vw;" value="#{userDTO.userName}"/>
+						<p:inputText required="true" style="width: 45vw;" value="#{updateDataBean.userDTO.userName}"/>
 					</div>
 				</div>
 				<h2 class="title-yellow mb-1 p-2">Upgrade</h2>
 				<h6 class="text-white text-justify mb-3">Faça um upgrade na sua conta para ter seu ranking ainda mais completo! Tenha vantagens em informações e históricos de jogos ao seu favor. </h6>
 				<div>
-					<p:selectOneRadio id="option" layout="custom" value="#{userDTO.account}">
+					<p:selectOneRadio id="option" layout="custom" value="#{updateDataBean.userDTO.account}">
 						<f:selectItem itemLabel="Premium 1" itemValue="premium1" />
 						<f:selectItem itemLabel="Premium 2" itemValue="premium2" />
 
@@ -72,13 +72,13 @@
 					</p:selectOneRadio>
 
 					<h:panelGroup id="selectedOptionPanel" class="p-grid">
-						<div class="card p-col-4 #{userDTO.account eq 'premium1' ? 'active' : ''}">
+						<div class="card p-col-4 #{updateDataBean.userDTO.account eq 'premium1' ? 'active' : ''}">
 							<h2 class="p-1">Premium 1</h2>
 							<p>Preço: R$50</p>
 							<p>Breve descrição do plano Premium 1.</p>
 						</div>
 
-						<div class="card p-col-4 #{userDTO.account eq 'premium2' ? 'active' : ''}">
+						<div class="card p-col-4 #{updateDataBean.userDTO.account eq 'premium2' ? 'active' : ''}">
 							<h2 class="p-1">Premium 2</h2>
 							<p>Preço: R$50</p>
 							<p>Breve descrição do plano Premium 2.</p>
@@ -116,7 +116,7 @@
 				</div>-->
 				<div class="p-grid text-left">
 					<div class="p-col-6">
-						<p:commandButton update="@form" value="Salvar" validateClient="true" class="ui-button"/>
+						<p:commandButton update="@form" value="Salvar" actionListener="#{updateDataBean.submit}" validateClient="true" class="ui-button"/>
 					</div>  
 				</div>
 			</div>
