@@ -18,8 +18,8 @@ import br.com.rankbet.model.game.Game;
 @Named
 @RequestScoped
 public class GamesBean {
-    
-	@Inject
+
+    @Inject
     private LiveGamesService liveGamesService;
 
     private List<Game> games;
@@ -28,33 +28,33 @@ public class GamesBean {
 
     private Game selectedGame;
 
-    
+
     public List<Game> getGames() {
         return games;
     }
-    
-    
+
+
     public String getSearchTerm() {
-		return searchTerm;
-	}
+        return searchTerm;
+    }
 
 
-	public void setSearchTerm(String searchTerm) {
-		this.searchTerm = searchTerm;
-	}
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
+    }
 
 
-	public List<Game> getFilteredGames() {
-		return filteredGames;
-	}
+    public List<Game> getFilteredGames() {
+        return filteredGames;
+    }
 
 
-	public void setFilteredGames(List<Game> filteredGames) {
-		this.filteredGames = filteredGames;
-	}
+    public void setFilteredGames(List<Game> filteredGames) {
+        this.filteredGames = filteredGames;
+    }
 
 
-	public void liveGames() {
+    public void liveGames() {
         try {
             games = liveGamesService.getAllLiveGames();
             filteredGames = new ArrayList<>(games);
@@ -65,27 +65,24 @@ public class GamesBean {
 
     public void selectTeam(Game game, String team) throws IOException {
         FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("team.xhtml?id="+game.getId()+"&name="+team);
+                .redirect("team.xhtml?id="+game.getId());
     }
 
     public void refreshLiveGames() {
         liveGamesService.refreshLiveGames();
         PrimeFaces.current().ajax().update("liveGamesTable");
     }
-    
+
     public void filterGames() {
         if (searchTerm == null || searchTerm.isEmpty()) {
             filteredGames = games;
         } else {
             filteredGames = games.stream()
-                .filter(g -> g.getTitle().toLowerCase().contains(searchTerm.toLowerCase()))
-                .collect(Collectors.toList());
+                    .filter(g -> g.getTitle().toLowerCase().contains(searchTerm.toLowerCase()))
+                    .collect(Collectors.toList());
         }
     }
 
-    public void getGameById(int id) {
 
-    }
-    
-    
+
 }
