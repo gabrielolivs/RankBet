@@ -20,7 +20,7 @@ import java.util.Optional;
 @Named
 @RequestScoped
 @ManagedBean
-public class AuthenticationBean {
+public class AuthenticationBean implements java.io.Serializable {
 
     public UserDTO getUserDTO() {
         return userDTO;
