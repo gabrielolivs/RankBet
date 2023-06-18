@@ -206,7 +206,7 @@
         <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.id)}" />
         <h:form styleClass="p-m-3" id="myform">
             <p:dataScroller id="liveOddsTable" value="#{oddsBean.odds}"
-                            var="odd" chunkSize="20" styleClass="p-liveGamesTable">
+                            var="odd" chunkSize="30" styleClass="p-liveGamesTable">
                 <p:outputPanel styleClass="p-grid">
                     <p:card>
 						<f:facet name="subtitle">
