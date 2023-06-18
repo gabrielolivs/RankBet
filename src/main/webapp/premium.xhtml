@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui" template="WEB-INF/layout.xhtml">
+
+
+    <ui:define name="content">
+        <f:event type="postAddToView" listener="#{premiumBean.geth2h(param.time, param.team1)}" />
+        <h:form styleClass="p-m-3" id="myform">
+            <p:panelGrid columns="3">
+                <f:facet name="header">
+                    <h:outputText value="Confronto direto"/>
+                    <h:outputText value="#{premiumBean.h2h.team1} vs #{premiumBean.h2h.team2}"/>
+                </f:facet>
+                <h:outputText value=""/>
+                <h:outputText value="#{premiumBean.h2h.team1}"/>
+                <h:outputText value="#{premiumBean.h2h.team2}"/>
+
+                <h:outputText value="Vitórias:"/>
+                <h:outputText value="#{premiumBean.h2h.win1}"/>
+                <h:outputText value="#{premiumBean.h2h.win2}"/>
+
+                <h:outputText value="Gols marcados:"/>
+                <h:outputText value="#{premiumBean.h2h.team1}"/>
+                <h:outputText value="#{premiumBean.h2h.team2}"/>
+            </p:panelGrid>
+            <p:panelGrid columns="3">
+                <f:facet name="header">
+                    <h:outputText value="Partidas"/>
+                </f:facet>
+                <h:outputText value=""/>
+                <h:outputText value="#{premiumBean.h2h.team1}"/>
+                <h:outputText value="#{premiumBean.h2h.team2}"/>
+
+                <ui:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
+                    <h:outputText value="Partida #{status.index + 1}:" />
+                    <h:outputText value="#{match.score1}"/>
+                    <h:outputText value="#{match.score2}"/>
+                </ui:repeat>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>
