@@ -4,10 +4,10 @@ import br.com.rankbet.dao.SubscrptionDAO;
 import br.com.rankbet.model.SubscriptionModel;
 
 public class SubscriptionService {
-    private static SubscrptionDAO subscrption;
+    private static SubscrptionDAO subscrption = new SubscrptionDAO();
 
     public SubscriptionModel getSubscription(long userId){
-        return subscrption.getSubscription(userId);
+        return subscrption.findById(userId);
     }
 
 }
