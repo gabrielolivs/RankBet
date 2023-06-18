@@ -31,20 +31,24 @@
                 <h:outputText value="#{premiumBean.h2h.team1}"/>
                 <h:outputText value="#{premiumBean.h2h.team2}"/>
             </p:panelGrid>
-            <p:panelGrid columns="3">
-                <f:facet name="header">
-                    <h:outputText value="Partidas"/>
-                </f:facet>
-                <h:outputText value=""/>
-                <h:outputText value="#{premiumBean.h2h.team1}"/>
-                <h:outputText value="#{premiumBean.h2h.team2}"/>
-
-                <p:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
-                    <h:outputText value="Partida #{status.index + 1}:" />
-                    <h:outputText value="#{match.score1}"/>
-                    <h:outputText value="#{match.score2}"/>
-                </p:repeat>
-            </p:panelGrid>
+            <p:accordionPanel>
+                <p:tab title="Histórico de Partidas">
+                    <h:panelGrid columns="3" cellpadding="10">
+                        <h:outputText
+                            value="" />
+                        <h:outputText
+                            value="#{premiumBean.h2h.team1}" />
+                        <h:outputText
+                            value="#{premiumBean.h2h.team2}" />
+                        <p:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
+                            <h:outputText value="Partida #{status.index + 1}:" />
+                            <h:outputText value="#{match.score1}"/>
+                            <h:outputText value="#{match.score2}"/>
+                        </p:repeat>
+                    </h:panelGrid>
+                </p:tab>
+            </p:accordionPanel>
+            
         </h:form>
     </ui:define>
 </ui:composition>
