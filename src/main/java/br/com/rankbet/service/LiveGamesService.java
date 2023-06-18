@@ -12,8 +12,7 @@ import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -49,7 +48,7 @@ public class LiveGamesService implements Serializable {
     }
 
     public void refreshLiveGames() {
-        target = client.target(EndpointsEnum.XBET.getEndpoint());
+        target = client.target("http://api.rankbet.tech:8000/live");
         jsonb = JsonbBuilder.create();
     	Response response = target.request(MediaType.APPLICATION_JSON).get();
         liveGames = jsonb.fromJson(response.readEntity(String.class), new ArrayList<Game>(){}.getClass().getGenericSuperclass());
