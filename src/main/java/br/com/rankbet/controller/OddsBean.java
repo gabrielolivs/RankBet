@@ -37,6 +37,15 @@ public class OddsBean implements java.io.Serializable {
         this.odds = odds;
     }
 
+    public Game getById(String id) {
+        for (Game odd : odds) {
+            if (odd.getId().equals(id)) {
+                return odd;
+            }
+        }
+        return null;
+    }
+
     public void premium(Game odd) throws IOException {
         FacesContext.getCurrentInstance().getExternalContext()
             .redirect("premium.xhtml?time="+odd.getTime()+"&team1="+odd.getTeam1());

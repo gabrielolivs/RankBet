@@ -207,7 +207,7 @@
         <h:form styleClass="p-m-3" id="myform">
 			<p:commandButton value="Área Premium"
 							style="width: 100px; height: 50px; overflow: hidden;"
-							action="#{oddsBean.premium(oddsBean.odds[0])}" />
+							action="#{oddsBean.premium(oddsBean.getById(param.id))}" />
             <p:dataScroller id="liveOddsTable" value="#{oddsBean.odds}"
                             var="odd" chunkSize="30" styleClass="p-liveGamesTable">
 				<f:facet name="header">
