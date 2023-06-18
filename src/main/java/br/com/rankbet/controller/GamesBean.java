@@ -65,7 +65,7 @@ public class GamesBean {
 
     public void selectTeam(Game game, String team) throws IOException {
         FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("team.xhtml?name="+game.getId());
+                .redirect("team.xhtml?id="+game.getId());
     }
 
     public void refreshLiveGames() {
