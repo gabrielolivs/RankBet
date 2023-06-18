@@ -61,59 +61,13 @@
 						<p:inputText required="true" style="width: 45vw;" value="#{updateDataBean.userDTO.userName}"/>
 					</div>
 				</div>
-				<h2 class="title-yellow mb-1 p-2">Upgrade</h2>
-				<h6 class="text-white text-justify mb-3">Faça um upgrade na sua conta para ter seu ranking ainda mais completo! Tenha vantagens em informações e históricos de jogos ao seu favor. </h6>
-				<div>
-					<p:selectOneRadio id="option" layout="custom" value="#{updateDataBean.userDTO.account}">
-						<f:selectItem itemLabel="Premium 1" itemValue="premium1" />
-						<f:selectItem itemLabel="Premium 2" itemValue="premium2" />
 
-						<p:ajax event="change" update="selectedOptionPanel" />
-					</p:selectOneRadio>
-
-					<h:panelGroup id="selectedOptionPanel" class="p-grid">
-						<div class="card p-col-4 #{updateDataBean.userDTO.account eq 'premium1' ? 'active' : ''}">
-							<h2 class="p-1">Premium 1</h2>
-							<p>Preço: R$50</p>
-							<p>Breve descrição do plano Premium 1.</p>
-						</div>
-
-						<div class="card p-col-4 #{updateDataBean.userDTO.account eq 'premium2' ? 'active' : ''}">
-							<h2 class="p-1">Premium 2</h2>
-							<p>Preço: R$50</p>
-							<p>Breve descrição do plano Premium 2.</p>
-						</div>
-					</h:panelGroup>
+				<div class="p-col-12">
+					<h6 class="text-white text-left">E-mail</h6>
+					<p:inputText id="email" type="email" required="true" style="width: 45vw;" value="#{updateDataBean.userDTO.email}"/>
+					<p:message for="email" display="tooltip"/>
+					<h:outputText value="#{updateDataBean.userDTO.email}"/>
 				</div>
-				<!--<div class="p-grid">
-					<div class="p-col-12">
-						<h6 class="text-white text-left">E-mail</h6>
-						<p:inputText type="email" required="true" style="width: 45vw;" value="#{usuario.email}"/>
-						<p:message for="email2" display="tooltip"/>
-            			<h:outputText value="#{usuario.email}"/>
-					</div>
-				</div>
-				<div class="p-grid">
-					<div class="p-col-6 m-2">
-						<h6 class="text-white text-left">Senha</h6>
-						<p:password id="pwd1" match="pwd2" style="width: 22vw;" value="#{usuario.senha}" required="true" feedback="true"
-						promptLabel="Por favor, digite a senha" weakLabel="Senha Fraca"
-						goodLabel="Senha Moderada" strongLabel="Senha Forte" />
-					</div>
-					<div class="p-col-6 m-2">
-						<h6 class="text-white text-left">Confirme a Senha</h6>
-						<p:password id="pwd2" value="#{usuario.confirm_senha}" style="width: 22vw;" required="true" feedback="true"
-						promptLabel="Por favor, digite a senha" weakLabel="Senha Fraca"
-						goodLabel="Senha Moderada" strongLabel="Senha Forte"/>
-					</div>
-				</div>
-				<div class="p-grid">
-					<div class="p-col-12">
-						<h5 class="text-white">
-							<p:selectBooleanCheckbox value="#{passwordView.password5}" itemLabel="Declaro que li e concordo com os Termos e Condições"/>
-						</h5>
-					</div>  
-				</div>-->
 				<div class="p-grid text-left">
 					<div class="p-col-6">
 						<p:commandButton update="@form" value="Salvar" actionListener="#{updateDataBean.submit}" validateClient="true" class="ui-button"/>

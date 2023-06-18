@@ -8,6 +8,7 @@ import br.com.rankbet.utils.PasswordUtil;
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import org.apache.commons.beanutils.BeanUtils;
@@ -41,9 +42,21 @@ public class UpdateDataBean {
         passwordUtil = new PasswordUtil();
     }
 
-    public String submit() throws InvocationTargetException, IllegalAccessException {
-        UserModel userModel = (UserModel)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-        BeanUtils.copyProperties(userModel, userDTO);
-        return (userService.updateUser(userModel)) ? "sucess" : "error";
+    public void submit() throws InvocationTargetException, IllegalAccessException {
+        UserModel userModel = (UserModel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        if(validateEmail() == null){
+            BeanUtils.copyProperties(userModel, userDTO);
+            userService.updateUser(userModel);
+            FacesContext.getCurrentInstance().
+                    addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"SUCESSO", "Message Content"));
+        }else{
+            FacesContext.getCurrentInstance().
+                    addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error Message", "Message Content"));
+        }
     }
+
+    private UserModel validateEmail(){
+        return userService.getUser(userDTO.getEmail());
+    }
+
 }
