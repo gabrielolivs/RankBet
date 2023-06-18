@@ -7,6 +7,8 @@ import br.com.rankbet.exception.ConstraintViolationException;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.TransactionException;
+import org.hibernate.exception.DataException;
 import org.hibernate.query.Query;
 
 import javax.persistence.PersistenceException;
@@ -206,6 +208,18 @@ public class BaseDao<T> implements IDao<T> {
         return predicateList;
     }
 
+    @Override
+    public void saveOrUpdate(T t) throws BusinessException {
+        try {
+            this.beginTransaction();
+            this.getSession().saveOrUpdate(t);
+            this.commit();
+        } catch (Exception exception) {
+           throw exception;
+        }  finally {
+            this.closeSession();
+        }
+    }
     private void openSession() {
         if (this.session == null || (!this.session.isOpen())) {
             this.session = sessionFactory.openSession();

@@ -35,34 +35,15 @@ public class UserService {
         return false;
     }
 
-    public boolean updateUser(UserModel userDTO) throws InvocationTargetException, IllegalAccessException {
-        UserModel userModel = new UserModel();
-        BeanUtils.copyProperties(userModel, userDTO);
+    public boolean updateUser(UserModel userModel) throws InvocationTargetException, IllegalAccessException {
         try {
-            userDAO.save(userModel);
+            userDAO.saveOrUpdate(userModel);
             return true;
         } catch (BusinessException e) {
             e.printStackTrace();
             return false;
         }
     }
-
-    public void updatePasswordUser(String email, String newPassword){
-        if(email != null && newPassword != null){
-            try{
-                UserModel user = userDAO.findById(1);
-                if(!Objects.equals(user.getUserPassword(), PasswordUtil.generateMD5(newPassword))){
-                    user.setUserPassword(newPassword);
-                    userDAO.save(user);
-                }else{
-                    // senha não é diferente
-                }
-            }catch (Exception exception){
-                exception.printStackTrace();
-            }
-        }
-    }
-
     public UserModel getUser(String email){
         return userDAO.findByEmail(email);
     }

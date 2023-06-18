@@ -36,4 +36,6 @@ interface IDao<T> {
     int count(T filter);
 
     List<Predicate> makeExample(T filter, CriteriaBuilder criteriaBuilder, Root<T> from);
+
+    void saveOrUpdate(T entity) throws BusinessException;
 }
