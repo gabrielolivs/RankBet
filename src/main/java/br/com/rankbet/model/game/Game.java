@@ -1,7 +1,5 @@
 package br.com.rankbet.model.game;
 
-import br.com.rankbet.model.MarketAll;
-
 import java.io.Serializable;
 
 public class Game implements Serializable {
