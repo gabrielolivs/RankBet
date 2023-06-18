@@ -9,24 +9,31 @@ import br.com.rankbet.service.RoleService;
 import br.com.rankbet.service.SubscriptionService;
 import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
-import java.io.Serializable;
 import java.util.Optional;
 
 @Named
-@ViewScoped
+@RequestScoped
 @ManagedBean
-public class AutenticationBean implements Serializable {
+public class AuthenticationBean {
+
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
+    }
 
     private UserDTO userDTO;
 
     private LoginService loginService;
 
-    private static SubscriptionService subscriptionService;
+    private static SubscriptionService subscriptionService = new SubscriptionService();
 
     private static RoleService roleService;
 
@@ -35,10 +42,6 @@ public class AutenticationBean implements Serializable {
         userDTO= new UserDTO();
         loginService = new LoginService();
         roleService = new RoleService();
-    }
-
-    public UserDTO getUserDTO() {
-        return userDTO;
     }
 
     public String submit(){

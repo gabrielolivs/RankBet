@@ -8,220 +8,52 @@
 
     <ui:define name="content">
         <style>
-            body{
-				background-color: rgb(28, 28, 28);
-			}
-			.p-liveGamesTable{
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				width: 100%;
-				background-color: rgb(28, 28, 28);
-			}
-
-            h2{
-                padding: 3rem;
+            .ui-datascroller-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .p-grid {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin-bottom: 100px;
             }
 
-			.ui-datascroller-content {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				width: 100%;
-				background-color: rgb(28, 28, 28)!important;
-				color: white!important;
-				border: none!important;
-			}
-/*
-			.ui-widget-content{
-				background-color: rgb(28, 28, 28)!important;
-			}*/
-
-			.ui-card-body{
-			    justify-content: center;
-			    align-items: center;
-			    text-align: center;
-				background-color: rgb(69, 69, 69)!important;
-				color: white!important;
-				border: none!important;
-				width: 50vw;
-			}
-
-			.p-grid {
-			    display: flex;
-			    justify-content: center;
-			    align-items: center;
-			    text-align: center;
-			    margin-bottom: 100px;
-			}
-
-            .returnHOME{
-                display: block;
+            .p-panelgrid {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
             }
-			
-			.p-panelgrid {
-			    display: flex;
-			    justify-content: center;
-			    align-items: center;
-			    text-align: center;
-				background-color: rgb(69, 69, 69)!important;
-				color: white!important;
-			}
-
-			.ui-button{
-				background-color:rgb(255, 196, 47)!important;
-				color: black!important;
-				border: none!important;
-			}
-
-			.ui-button:hover{
-				background-color:rgb(255, 202, 132)!important;
-				color: black!important;
-				border: none!important;
-			}
-
-			.background-search{
-				background-image: url(resources/images/teste_blur.jpeg);
-				background-repeat: no-repeat;
-				width: 100%;
-				height: 60vh;
-			}
-
-			.borderNone{
-				border: none!important;
-			}
-
-			.ui-inputfield{
-				width:70vw;
-			}
-
-			.ui-datascroller-header{
-				background-color: rgb(69, 69, 69)!important;
-			}
-
-			@media screen and (max-width:281px){
-
-				.ui-card-body{
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					background-color: rgb(69, 69, 69)!important;
-					color: white!important;
-					box-shadow: 4px black;
-					border: none!important;
-					width: 100%!important;
-				}
-
-				h2{
-					padding: 10px;
-				}
-
-			.ui-datascroller-item{
-					padding: 0%;
-					width: 10%;
-				}
-			}
-						
-			@media screen and (min-width:281px) and (max-width:376px){
-
-				.ui-card-body{
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					background-color: rgb(69, 69, 69)!important;
-					color: white!important;
-					box-shadow: 4px black;
-					border: none!important;
-					width: 100%!important;
-				}
-
-				h2{
-					padding: 10px;
-				}
-
-			.ui-datascroller-item{
-					padding: 0%;
-				}
-			}
-
-			@media screen and (min-width:376px) and (max-width:1023px){
-
-				.ui-card-body{
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					background-color: rgb(69, 69, 69)!important;
-					color: white!important;
-					box-shadow: 4px black;
-					border: none!important;
-					width: 100%!important;
-				}
-			} 
-
-			@media screen and (min-width:760px) and (max-width:1023px){
-
-				.ui-card-body{
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					background-color: rgb(69, 69, 69)!important;
-					color: white!important;
-					box-shadow: 4px black;
-					border: none!important;
-					width: 80vw!important;
-				}
-				.background-search{
-							background-image: url(resources/images/teste_blur.jpeg);
-							background-repeat: no-repeat;
-							width: 100%;
-							height: 40vh;
-						}
-			} 
-
-			@media screen and (min-width:539px) and (max-width:1023px){
-
-				.ui-card-body{
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					background-color: rgb(69, 69, 69)!important;
-					color: white!important;
-					box-shadow: 4px black;
-					border: none!important;
-					width: 80vw!important;
-				}
-			} 
-			@media screen and (min-width: 1439px){
-
-				.background-search{
-					background-image: url(resources/images/large_background.jpeg);
-					background-repeat: no-repeat;
-					width: 100%;
-					height: 60vh;
-				}
-			} 
         </style>
-        <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.name)}" />
+        <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.id, param.name)}" />
         <h:form styleClass="p-m-3" id="myform">
+        <h:panelGrid columns="2" columnClasses="p-col-3,p-col-9">
+            <h:outputText value="Search:" styleClass="p-mr-2" />
+        </h:panelGrid>
             <p:dataScroller id="liveOddsTable" value="#{oddsBean.odds}"
-                            var="odd" chunkSize="10" styleClass="p-liveGamesTable">
+                            var="odd" chunkSize="10" >
+                <f:facet name="header">
+                </f:facet>
                 <p:outputPanel styleClass="p-grid">
-                    <p:card>
-						<f:facet name="subtitle">
-							<p:outputLabel value="#{odd.betName} - #{odd.team1} x #{odd.team2}" styleClass="p-mt-0 p-mb-2" class="text-white" />
-						</f:facet>
-					
-						<h:panelGrid columns="2" cellspacing="2" columnClasses="col-md-6 col-md-6" styleClass="p-mt-2 p-justify-center p-panelgrid">
-							<p:linkButton value="Vitória - #{odd.win1}" href="#{odd.href}" target="_blank"
-								style="width: 150px; height: 50px; overflow: hidden;"
-								styleClass="p-team-btn" />
-							<p:linkButton value="Derrota - #{odd.win2}" href="#{odd.href}" target="_blank"
-								style="width: 150px; height: 50px; overflow: hidden;" styleClass="p-team-btn"
-								 />
-						</h:panelGrid>
-					</p:card>
+                    <h:panelGrid columns="1" styleClass="p-col-12 p-text-center">
+                        <p:outputLabel value="#{odd.href}" styleClass="p-mt-0 p-mb-2" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" styleClass="p-col-12 p-text-center">
+                        <p:outputLabel value="#{param.name}" styleClass="p-mt-0 p-mb-2" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" columnClasses="p-col-6 p-col-6" styleClass="p-mt-2 p-justify-center">
+                        <p:commandButton value="Vitória #{odd.markets.win1}"
+                                         style="width: 150px; height: 100px; overflow: hidden;"
+                                          />
+                        <p:commandButton value="Derrota #{odd.markets.win2}"
+                                         style="width: 150px; height: 100px; overflow: hidden;"
+                                         />
+                    </h:panelGrid>
                 </p:outputPanel>
             </p:dataScroller>
             <h:message for="liveOddsTable" />

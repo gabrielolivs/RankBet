@@ -1,4 +1,4 @@
-//tabela de log das chamadas de odds, armazena a casa(api), data da chamada, jogo, usuario, odd, tipo de aposta
+--tabela de log das chamadas de odds, armazena a casa(api), data da chamada, jogo, usuario, odd, tipo de aposta
 CREATE TABLE tbl_log (
   id INT AUTO_INCREMENT,
   api VARCHAR(250),
@@ -11,7 +11,7 @@ CREATE TABLE tbl_log (
   PRIMARY KEY (id)
 );
 
-//tabela para armazenar propriedades do sistema, urls de apis, chaves, tokens etc
+--tabela para armazenar propriedades do sistema, urls de apis, chaves, tokens etc
 CREATE TABLE tbl_properties(
   id INT AUTO_INCREMENT,
   create_by VARCHAR(50),
@@ -24,7 +24,7 @@ CREATE TABLE tbl_properties(
 );
 
 
-//tabela de usuario
+--tabela de usuario
 CREATE TABLE tbl_user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(50),
@@ -37,8 +37,19 @@ CREATE TABLE tbl_user (
     user_enabled TINYINT
 );
 
+CREATE TABLE tbl_role (
+    id INT,
+    type_name VARCHAR(50),
+    role_description VARCHAR(50),
+    create_at DateTime,
+    updated_at DateTime,
+    user_enabled TINYINT,
+    create_by VARCHAR(50),
+    updated_by VARCHAR(50),
+    PRIMARY KEY (id)
+);
 
-//tabela de sub, um usuário so pode ter UM sub ativa, a sub tem um preço e uma data de expiração, e um role(gratis, premium, etc)
+--tabela de sub, um usuário so pode ter UM sub ativa, a sub tem um preço e uma data de expiração, e um role(gratis, premium, etc)
 CREATE TABLE tbl_subscription (
     id INT AUTO_INCREMENT,
     create_by VARCHAR(50),
@@ -54,21 +65,10 @@ CREATE TABLE tbl_subscription (
     FOREIGN KEY (user_id) REFERENCES tbl_user(id)
 );
 
-//tabela de perfis, cada perfil tem um nome, descrição,e um enable(para controle, por exemplo se temos: gratis, silver, gold e platium, mas querremos desabilitar novas sub platinum é so colocar enable como falso)
-CREATE TABLE tbl_role (
-    id INT,
-    type_name VARCHAR(50),
-    role_description VARCHAR(50),
-    create_at DateTime,
-    updated_at DateTime,
-    user_enabled TINYINT,
-    create_by VARCHAR(50),
-    updated_by VARCHAR(50),
-    PRIMARY KEY (id)
-);
+--tabela de perfis, cada perfil tem um nome, descrição,e um enable(para controle, por exemplo se temos: gratis, silver, gold e platium, mas querremos desabilitar novas sub platinum é so colocar enable como falso)
 
-//tabela com o preço atual para cada role, essa tabela mostra apenas os preços atuais, o preço que usuário pagou em um determinado momento fica na proproia
-//tbl_subscription
+--tabela com o preço atual para cada role, essa tabela mostra apenas os preços atuais, o preço que usuário pagou em um determinado momento fica na proproia
+--tbl_subscription
 CREATE TABLE tbl_currentPrice (
     id INT,
     current_price FLOAT,

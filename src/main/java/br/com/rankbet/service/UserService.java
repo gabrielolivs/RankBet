@@ -1,6 +1,7 @@
 package br.com.rankbet.service;
 
 import br.com.rankbet.dao.UserDAO;
+import br.com.rankbet.exception.BusinessException;
 import br.com.rankbet.model.UserModel;
 import br.com.rankbet.model.dto.UserDTO;
 import br.com.rankbet.utils.PasswordUtil;
@@ -11,7 +12,7 @@ import java.util.Objects;
 
 public class UserService {
 
-    private UserDAO userDAO;
+    private UserDAO userDAO = new UserDAO();
 
     public void registerUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
         UserModel userModel = new UserModel();
@@ -21,7 +22,7 @@ public class UserService {
                 String md5Password = PasswordUtil.generateMD5(userModel.getUserPassword());
                 userModel.setUserPassword(md5Password);
                 userModel.setUserEnabled(1L);
-                userDAO.saveUser(userModel);
+                userDAO.save(userModel);
             }catch (Exception exception){
                 exception.printStackTrace();
             }
@@ -31,24 +32,20 @@ public class UserService {
     public void updateUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
         UserModel userModel = new UserModel();
         BeanUtils.copyProperties(userModel, userDTO);
-            try {
-                if(!userDAO.existsEmail(userModel.getEmail())){
-                    userDAO.saveUser(userModel);
-                }else{
-                    //erro email ja existe
-                }
-            }catch (Exception exception){
-                exception.printStackTrace();
-            }
+        try {
+            userDAO.save(userModel);
+        } catch (BusinessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void updatePasswordUser(String email, String newPassword){
         if(email != null && newPassword != null){
             try{
-                UserModel user = userDAO.getByEmail(email);
+                UserModel user = userDAO.findById(1);
                 if(!Objects.equals(user.getUserPassword(), PasswordUtil.generateMD5(newPassword))){
                     user.setUserPassword(newPassword);
-                    userDAO.saveUser(user);
+                    userDAO.save(user);
                 }else{
                     // senha não é diferente
                 }
@@ -59,6 +56,6 @@ public class UserService {
     }
 
     public UserModel getUser(String email){
-        return userDAO.getByEmail(email);
+        return userDAO.findById(1);
     }
 }
