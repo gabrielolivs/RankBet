@@ -22,6 +22,10 @@
                 <h:outputText value="Vitórias:"/>
                 <h:outputText value="#{premiumBean.h2h.win1}"/>
                 <h:outputText value="#{premiumBean.h2h.win2}"/>
+                
+                <h:outputText value="Empates:"/>
+                <h:outputText value="#{premiumBean.h2h.draw}"/>
+                <h:outputText value="#{premiumBean.h2h.draw}"/>
 
                 <h:outputText value="Gols marcados:"/>
                 <h:outputText value="#{premiumBean.h2h.team1}"/>
@@ -35,17 +39,11 @@
                 <h:outputText value="#{premiumBean.h2h.team1}"/>
                 <h:outputText value="#{premiumBean.h2h.team2}"/>
 
-                <ui:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
-                    <p:column>
+                <p:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
                     <h:outputText value="Partida #{status.index + 1}:" />
-                    </p:column>
-                    <p:column>
                     <h:outputText value="#{match.score1}"/>
-                    </p:column>
-                    <p:column>
                     <h:outputText value="#{match.score2}"/>
-                    </p:column>
-                </ui:repeat>
+                </p:repeat>
             </p:panelGrid>
         </h:form>
     </ui:define>
