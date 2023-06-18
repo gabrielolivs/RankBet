@@ -20,6 +20,7 @@ public class premiumBean implements java.io.Serializable {
 
     public void geth2h(String time, String team1) {
         try {
+            System.out.println("PREMIUMBEAN");
             h2h = PremiumService.getH2h(time, team1);
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("myform", new FacesMessage("Erro ao extrair dados da API"));
