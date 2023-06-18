@@ -35,7 +35,7 @@ public class UserService {
         return false;
     }
 
-    public boolean updateUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
+    public boolean updateUser(UserModel userDTO) throws InvocationTargetException, IllegalAccessException {
         UserModel userModel = new UserModel();
         BeanUtils.copyProperties(userModel, userDTO);
         try {

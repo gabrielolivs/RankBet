@@ -11,7 +11,7 @@ public class LoginService {
 
     public UserModel verifyAValidLogin(String email, String password) {
         String md5Password = PasswordUtil.generateMD5(password);
-        UserModel temp = userDAO.findByEmail("joao@example.com");
+        UserModel temp = userDAO.findByEmail(email);
         if(temp != null){
             if (temp.getUserPassword().equalsIgnoreCase(md5Password)){
                 return temp;

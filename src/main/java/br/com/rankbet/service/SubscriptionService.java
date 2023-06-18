@@ -7,7 +7,7 @@ public class SubscriptionService {
     private static SubscrptionDAO subscrption = new SubscrptionDAO();
 
     public SubscriptionModel getSubscription(long userId){
-        return subscrption.findById(userId);
+        return subscrption.findByUser(userId);
     }
 
 }

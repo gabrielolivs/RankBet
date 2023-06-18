@@ -14,6 +14,7 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @Named
@@ -44,7 +45,7 @@ public class AuthenticationBean {
         roleService = new RoleService();
     }
 
-    public String submit(){
+    public void submit() throws IOException {
         UserModel userModel = loginService.verifyAValidLogin(userDTO.getEmail(), userDTO.getUserPassword());
         if(userModel != null){
             var subscriptionModel = subscriptionService.getSubscription(userModel.getId());
@@ -53,14 +54,13 @@ public class AuthenticationBean {
                     .flatMap(roleId -> roleService.getSubscription(roleId))
                     .orElse(null);
             if(roleModel != null){
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user",userDTO);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user",userModel);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("profile",AccountType.valueOf(roleModel.getTypeName()));
             }
-            return "success";
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath());
         }else{
             FacesContext.getCurrentInstance().
                     addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error Message", "Message Content"));
-            return "error";
         }
     }
 }
