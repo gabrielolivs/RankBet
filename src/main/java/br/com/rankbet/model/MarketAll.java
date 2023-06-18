@@ -2,8 +2,6 @@ package br.com.rankbet.model;
 
 import java.io.Serializable;
 
-
-
 public class MarketAll implements Serializable {
     public Win1 win1;
     public Win2 win2;

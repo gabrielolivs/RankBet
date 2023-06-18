@@ -28,13 +28,6 @@ public class Game implements Serializable {
         this.href = href;
     }
 
-    public Game() {
-
-    }
-
-    public Game(int id, String title, String team1, String team2, int score1, int score2, String href, boolean isLive, int minute, int seconds, MarketAll markets) {
-    }
-
     public String getId() {
         return id;
     }
