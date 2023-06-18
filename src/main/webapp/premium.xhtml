@@ -33,19 +33,13 @@
             </p:panelGrid>
             <p:accordionPanel>
                 <p:tab title="Histórico de Partidas">
-                    <h:panelGrid columns="3" cellpadding="10">
-                        <h:outputText
-                            value="" />
-                        <h:outputText
-                            value="#{premiumBean.h2h.team1}" />
-                        <h:outputText
-                            value="#{premiumBean.h2h.team2}" />
-                        <p:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
-                            <h:outputText value="Partida #{status.index + 1}:" />
-                            <h:outputText value="#{match.score1}"/>
-                            <h:outputText value="#{match.score2}"/>
-                        </p:repeat>
-                    </h:panelGrid>
+                    <p:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
+                        <h:outputText value="Partida #{status.index + 1}:" />
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <h:outputText value="#{premiumBean.h2h.team1}: #{match.score1}"/>
+                            <h:outputText value="#{premiumBean.h2h.team2}: #{match.score2}"/>
+                        </h:panelGrid>
+                    </p:repeat>
                 </p:tab>
             </p:accordionPanel>
             
