@@ -12,6 +12,8 @@ public class UserDTO {
 
     private String userPassword;
 
+    private String doublePassword;
+
 
 
 
@@ -35,6 +37,10 @@ public class UserDTO {
         return userPassword;
     }
 
+    public String getDoublePassword() {
+        return doublePassword;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -53,5 +59,9 @@ public class UserDTO {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public void setDoublePassword(String doublePassword) {
+        this.doublePassword = doublePassword;
     }
 }
