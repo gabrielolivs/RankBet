@@ -67,23 +67,23 @@
 				<div class="p-grid">
 					<div class="p-col-6 m-2">
 						<h6 class="text-white text-left">Primeiro Nome</h6>
-						<p:inputText required="true" style="width: 22vw;" value="#{userDTO.firstName}"/>
+						<p:inputText required="true" style="width: 22vw;" value="#{registerBean.userDTO.firstName}"/>
 					</div>
 					<div class="p-col-6 m-2">
 						<h6 class="text-white text-left">Último Nome</h6>
-						<p:inputText required="true" style="width: 22vw;" value="#{userDTO.lastName}"/>
+						<p:inputText required="true" style="width: 22vw;" value="#{registerBean.userDTO.lastName}"/>
 					</div>
 				</div>
 				<div class="p-grid">
 					<div class="p-col-12">
 						<h6 class="text-white text-left">Nome de Usuário</h6>
-						<p:inputText required="true" style="width: 45vw;" value="#{userDTO.userName}"/>
+						<p:inputText required="true" style="width: 45vw;" value="#{registerBean.userDTO.userName}"/>
 					</div>
 				</div>
 				<div class="p-grid">
 					<div class="p-col-12">
 						<h6 class="text-white text-left">E-mail</h6>
-						<p:inputText id="email" required="true" style="width: 45vw;" value="#{userDTO.email}" validator="#{usuario.validateEmail}"/>
+						<p:inputText id="email" required="true" style="width: 45vw;" value="#{registerBean.userDTO.email}"/>
 							<!--<f:validateRegex pattern="^[\w\-]+(\.[\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[a-zA-Z]{2,})$" />
 						</p:inputText>-->
 					</div>
@@ -91,54 +91,17 @@
 				<div class="p-grid">
 					<div class="p-col-6 m-2">
 						<h6 class="text-white text-left">Senha</h6>
-						<p:password id="pwd1" match="pwd2" style="width: 22vw;" value="#{userDTO.userPassword}" required="true" feedback="true"
+						<p:password  style="width: 22vw;" value="#{registerBean.userDTO.userPassword}" required="true" feedback="true"
 						promptLabel="Por favor, digite a senha" weakLabel="Senha Fraca"
 						goodLabel="Senha Moderada" strongLabel="Senha Forte" />
 					</div>
-					<div class="p-col-6 m-2">
-						<h6 class="text-white text-left">Confirme a Senha</h6>
-						<p:password id="pwd2" value="#{userDTO.doublePassword}" style="width: 22vw;" required="true" feedback="true"
-						promptLabel="Por favor, digite a senha" weakLabel="Senha Fraca"
-						goodLabel="Senha Moderada" strongLabel="Senha Forte"/>
-					</div>
 				</div>
-				
-				<div>
-					<p:selectOneRadio id="option" layout="custom" value="#{userDTO.account}">
-						<f:selectItem itemLabel="Free" itemValue="free" />
-						<f:selectItem itemLabel="Premium 1" itemValue="premium1" />
-						<f:selectItem itemLabel="Premium 2" itemValue="premium2" />
-
-						<p:ajax event="change" update="selectedOptionPanel" />
-					</p:selectOneRadio>
-
-					<h:panelGroup id="selectedOptionPanel" class="p-grid">
-						<div class="card p-col-4 #{userDTO.account eq 'free' ? 'active' : ''}">
-							<h2 class="p-1">Free</h2>
-							<p>Preço: R$50</p>
-							<p>Breve descrição do plano Free.</p>
-						</div>
-
-						<div class="card p-col-4 #{userDTO.account eq 'premium1' ? 'active' : ''}">
-							<h2 class="p-1">Premium 1</h2>
-							<p>Preço: R$50</p>
-							<p>Breve descrição do plano Premium 1.</p>
-						</div>
-
-						<div class="card p-col-4 #{userDTO.account eq 'premium2' ? 'active' : ''}">
-							<h2 class="p-1">Premium 2</h2>
-							<p>Preço: R$50</p>
-							<p>Breve descrição do plano Premium 2.</p>
-						</div>
-					</h:panelGroup>
-				</div>
-				
-				<div class="p-grid text-left">
-					<div class="p-col-6">
-						<p:commandButton update="@form" value="Cadastrar" validateClient="true" class="ui-button"/>
-					</div>  
-				</div>
-			</div>
-		</h:form>
-	</h:body>
-</html>
+                    <div class="p-grid text-left">
+                        <div class="p-col-6">
+                            <p:commandButton update="@form" value="Cadastrar" actionListener="#{registerBean.submit}" validateClient="true" class="ui-button"/>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </h:body>
+    </html>

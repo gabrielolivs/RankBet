@@ -1,5 +1,7 @@
 package br.com.rankbet.model.game;
 
+import br.com.rankbet.model.MarketAll;
+
 import java.io.Serializable;
 
 public class Game implements Serializable {
@@ -28,6 +30,9 @@ public class Game implements Serializable {
 
     public Game() {
 
+    }
+
+    public Game(int id, String title, String team1, String team2, int score1, int score2, String href, boolean isLive, int minute, int seconds, MarketAll markets) {
     }
 
     public String getId() {

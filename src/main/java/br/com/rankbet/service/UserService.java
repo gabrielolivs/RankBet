@@ -8,13 +8,14 @@ import br.com.rankbet.utils.PasswordUtil;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class UserService {
 
     private UserDAO userDAO = new UserDAO();
 
-    public void registerUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
+    public boolean registerUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {
         UserModel userModel = new UserModel();
         BeanUtils.copyProperties(userModel, userDTO);
         if(!userModel.getEmail().isEmpty()){
@@ -22,11 +23,16 @@ public class UserService {
                 String md5Password = PasswordUtil.generateMD5(userModel.getUserPassword());
                 userModel.setUserPassword(md5Password);
                 userModel.setUserEnabled(1L);
-                userDAO.save(userModel);
+                userModel.setCreateAt(LocalDateTime.now());
+                userModel.setUpdatedAt(LocalDateTime.now());
+                 userDAO.save(userModel);
+                 return true;
             }catch (Exception exception){
                 exception.printStackTrace();
+                return false;
             }
         }
+        return false;
     }
 
     public void updateUser(UserDTO userDTO) throws InvocationTargetException, IllegalAccessException {

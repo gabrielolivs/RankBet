@@ -25,7 +25,7 @@
 				<div class="p-grid">
 					<div class="p-col-12">
 						<h4>E-mail</h4>
-						<p:inputText id="email" required="true" style="width: 30vw;" value="#{userDTO.email}" validator="#{usuario.validateEmail}"/>
+						<p:inputText id="email" required="true" style="width: 30vw;" value="#{authenticationBean.userDTO.email}"/>
 							<!--<f:validateRegex pattern="^[\w\-]+(\.[\w\-]+)*@[\w\-]+(\.[\w\-]+)*(\.[a-zA-Z]{2,})$" />
 						</p:inputText>-->
 					</div>
@@ -33,13 +33,13 @@
 				<div class="p-grid">
 					<div class="p-col-12 m-2">
 						<h4>Senha</h4>
-						<p:password id="pwd1" match="pwd2" style="width: 30vw;" value="#{userDTO.userPassword}" required="true"/>
+						<p:password style="width: 30vw;" value="#{authenticationBean.userDTO.userPassword}" required="true"/>
 					</div>
 				</div>
 				
 				<div class="p-grid text-left">
 					<div class="p-col-12">
-						<p:commandButton update="@form" value="Entrar" validateClient="true" class="btn-rank"/>
+						<p:commandButton update="@form" value="Entrar" validateClient="true" actionListener="#{authenticationBean.submit}" class="btn-rank"/>
 					</div>  
 				</div>
 				<div class="text-right p-2">
