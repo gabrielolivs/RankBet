@@ -70,7 +70,7 @@ public class LiveGamesService implements Serializable {
         Collections.sort(liveOddsfinal, new Comparator<Game>() {
             @Override
             public int compare(Game game1, Game game2) {
-                return Float.compare(game1.getWin1(), game2.getWin1());
+                return Float.compare(game2.getWin1(), game1.getWin1());
             }
         });
         return liveOddsfinal;
