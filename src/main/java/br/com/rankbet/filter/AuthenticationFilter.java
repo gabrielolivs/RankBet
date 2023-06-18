@@ -43,9 +43,11 @@ public class AuthenticationFilter implements Filter {
         UserModel dummyUser = (UserModel) httpServletRequest.getSession().getAttribute( "user" );
 
         if ( dummyUser == null ) {
-            //chain.doFilter( request, response );
-            //
-            // httpServletResponse.sendRedirect( httpServletRequest.getContextPath().toString() + "/login.xhtml" );
+
+            if (((jakarta.servlet.http.HttpServletRequest) request).getServletPath().contains("cadastro")) {
+                RequestDispatcher rd = request.getRequestDispatcher("/cadastro.xhtml");
+                rd.forward(request,response);
+            }
             RequestDispatcher rd = request.getRequestDispatcher("/login.xhtml");
             rd.forward(request,response);
         } else
