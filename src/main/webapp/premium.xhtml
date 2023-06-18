@@ -12,6 +12,7 @@
             <p:panelGrid columns="3">
                 <f:facet name="header">
                     <h:outputText value="Confronto direto"/>
+                    <br>
                     <h:outputText value="#{premiumBean.h2h.team1} vs #{premiumBean.h2h.team2}"/>
                 </f:facet>
                 <h:outputText value=""/>
@@ -35,9 +36,15 @@
                 <h:outputText value="#{premiumBean.h2h.team2}"/>
 
                 <ui:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
+                    <p:column>
                     <h:outputText value="Partida #{status.index + 1}:" />
+                    </p:column>
+                    <p:column>
                     <h:outputText value="#{match.score1}"/>
+                    </p:column>
+                    <p:column>
                     <h:outputText value="#{match.score2}"/>
+                    </p:column>
                 </ui:repeat>
             </p:panelGrid>
         </h:form>
