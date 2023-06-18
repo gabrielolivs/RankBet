@@ -205,7 +205,7 @@
         </style>
         <f:event type="postAddToView" listener="#{oddsBean.liveOdds(param.id)}" />
         <h:form styleClass="p-m-3" id="myform">
-			<p:linkButton value="Aréa Premium" href="premium.xhtml?time=#{param.time}&team1=#{param.team1}"
+			<p:linkButton value="Aréa Premium" href="premium.xhtml?time=#{param.time}&team1=#{param.team}"
 								style="width: 150px; height: 50px; overflow: hidden;"
 								styleClass="p-team-btn" />
             <p:dataScroller id="liveOddsTable" value="#{oddsBean.odds}"
