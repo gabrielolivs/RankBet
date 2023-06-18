@@ -38,9 +38,14 @@ public class OddsBean implements java.io.Serializable {
     }
 
     public void premium(Game odd) throws IOException {
-        System.out.println("PREMIUM");
-        FacesContext.getCurrentInstance().getExternalContext()
-                .redirect("premium.xhtml?time="+odd.getTime()+"&team1="+odd.getTeam1());
+        if (odd != null) {
+            System.out.println("PREMIUM");
+            FacesContext.getCurrentInstance().getExternalContext()
+                    .redirect("premium.xhtml?time="+odd.getTime()+"&team1="+odd.getTeam1());
+        }
+        else {
+            System.out.println("Odd is null");
+        }
     }
 
 }
