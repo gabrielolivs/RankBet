@@ -13,4 +13,7 @@ public class RoleService {
         return Optional.ofNullable( roleDAO.findById(userId));
     }
 
+    public RoleModel findRole(String name) {
+        return roleDAO.findByTypeName(name);
+    }
 }
