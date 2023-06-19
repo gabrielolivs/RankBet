@@ -34,7 +34,7 @@
                 <h:outputText value="#{premiumBean.h2h.goals1}"/>
                 <h:outputText value="#{premiumBean.h2h.goals2}"/>
             </p:panelGrid>
-            <p:accordionPanel styleClass="p-mt-2 p-justify-center" rendered="#{premiumBean.isPremium()}>
+            <p:accordionPanel styleClass="p-mt-2 p-justify-center" rendered="#{premiumBean.isPremium()}">
                 <p:tab title="Histórico de Partidas">
                     <p:repeat value="#{premiumBean.h2h.matches}" var="match" varStatus="status">
                         <p:outputPanel>
