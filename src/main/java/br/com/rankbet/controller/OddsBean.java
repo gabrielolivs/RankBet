@@ -1,5 +1,6 @@
 package br.com.rankbet.controller;
 
+import br.com.rankbet.enums.AccountType;
 import br.com.rankbet.model.UserModel;
 import br.com.rankbet.model.game.Game;
 import br.com.rankbet.service.LiveGamesService;
@@ -25,7 +26,12 @@ public class OddsBean implements java.io.Serializable {
     public void liveOdds(String id) {
         try {
             odds = liveGamesService.getAllLiveOdds(id);
-            UserModel userModel = (UserModel) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+            if(AccountType.valueOf("FREE") == FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile")){
+                if (!odds.isEmpty()) {
+                    odds.get(0).setWin1(0);
+                    odds.get(0).setWin2(0);
+                }
+            }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("myform", new FacesMessage("Erro ao extrair dados da API"));
         }
