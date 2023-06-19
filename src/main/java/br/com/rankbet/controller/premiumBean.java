@@ -1,5 +1,6 @@
 package br.com.rankbet.controller;
 
+import br.com.rankbet.enums.AccountType;
 import br.com.rankbet.model.h2h.H2h;
 import br.com.rankbet.service.PremiumService;
 import jakarta.faces.application.FacesMessage;
@@ -20,8 +21,20 @@ public class premiumBean implements java.io.Serializable {
 
     public void geth2h(String time, String team1) {
         try {
-            System.out.println("PREMIUMBEAN");
             h2h = PremiumService.getH2h(time, team1);
+            if(AccountType.valueOf("FREE") == FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile") || AccountType.valueOf("PREMIUM1") == FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile")){
+                if (h2h != null) {
+                    h2h.setWin1(0);
+                    h2h.setWin2(0);
+                    h2h.setGoals1(0);
+                    h2h.setGoals2(0);
+                    h2h.setDraw(0);
+                    for (int i = 0; i < h2h.getMatches().size(); i++) {
+                        h2h.getMatches().get(i).setScore1(0);
+                        h2h.getMatches().get(i).setScore2(0);
+                    }
+                }
+            }
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage("myform", new FacesMessage("Erro ao extrair dados da API"));
         }

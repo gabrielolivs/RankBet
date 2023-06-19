@@ -23,10 +23,13 @@ public class OddsBean implements java.io.Serializable {
 
     private List<Game> odds;
 
+    private AccountType accountType;
+
     public void liveOdds(String id) {
         try {
+            accountType = (AccountType) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile");
             odds = liveGamesService.getAllLiveOdds(id);
-            if(AccountType.valueOf("FREE") == FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile")){
+            if(AccountType.valueOf("FREE") == accountType){
                 if (!odds.isEmpty()) {
                     odds.get(0).setWin1(0);
                     odds.get(0).setWin2(0);
@@ -52,6 +55,10 @@ public class OddsBean implements java.io.Serializable {
             }
         }
         return null;
+    }
+
+    public AccountType getAccountType() {
+        return accountType;
     }
 
 
