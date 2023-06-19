@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class UserService {
@@ -46,5 +47,9 @@ public class UserService {
     }
     public UserModel getUser(String email){
         return userDAO.findByEmail(email);
+    }
+
+    public UserModel getByUserId(long id){
+        return userDAO.findById(id);
     }
 }
