@@ -61,5 +61,9 @@ public class OddsBean implements java.io.Serializable {
         return accountType;
     }
 
+    public boolean isPremium() {
+        return accountType == AccountType.PREMIUM1 || accountType == AccountType.PREMIUM2;
+    }
+
 
 }
