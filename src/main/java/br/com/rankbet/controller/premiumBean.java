@@ -19,10 +19,13 @@ public class premiumBean implements java.io.Serializable {
 
     private H2h h2h;
 
+    private AccountType accountType;
+
     public void geth2h(String time, String team1) {
         try {
+            accountType = (AccountType) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile");
             h2h = PremiumService.getH2h(time, team1);
-            if(AccountType.valueOf("FREE") == FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile") || AccountType.valueOf("PREMIUM1") == FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("profile")){
+            if(AccountType.valueOf("FREE") ==  accountType|| AccountType.valueOf("PREMIUM1") == accountType){
                 if (h2h != null) {
                     h2h.setWin1(0);
                     h2h.setWin2(0);
@@ -46,5 +49,9 @@ public class premiumBean implements java.io.Serializable {
 
     public void setH2h(H2h h2h) {
         this.h2h = h2h;
+    }
+
+    public boolean isPremium() {
+        return accountType == AccountType.PREMIUM1 || accountType == AccountType.PREMIUM2;
     }
 }

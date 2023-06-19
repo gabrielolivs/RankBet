@@ -207,7 +207,7 @@
         <h:form styleClass="p-m-3" id="myform">
 			<p:linkButton outcome="premium" value="Área Premium"
 								style="width: 150px; height: 50px; overflow: hidden;"
-								styleClass="p-team-btn" disabled="#{oddsBean.isPremium}" >
+								styleClass="p-team-btn" disabled="#{oddsBean.isPremium()}" >
 				<f:param name="time" value="#{param.time}" />
 				<f:param name="team1" value="#{param.team}" />
 			</p:linkButton>
