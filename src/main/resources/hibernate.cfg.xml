@@ -11,7 +11,7 @@
 
         <property name="hibernate.connection.password">teste12345</property>
 
-        <property name="hibernate.connection.url">jdbc:mysql://mysql:3306/mydb?useSSL=false&allowPublicKeyRetrieval=true</property>
+        <property name="hibernate.connection.url">jdbc:mysql://mysql:3306/mydb?allowPublicKeyRetrieval=true&amp;useSSL=false</property>
 
 
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
