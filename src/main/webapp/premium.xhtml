@@ -9,8 +9,8 @@
     <ui:define name="content">
         <f:event type="postAddToView" listener="#{premiumBean.geth2h(param.time, param.team1)}" />
         <h:form styleClass="p-m-3" id="myform">
-            <p:outputPanel rendered="!#{premiumBean.isPremium()}">
-                            <h:outputText value="Área exclusiva para usuários premium!" />
+            <p:outputPanel rendered="#{premiumBean.isFreemium()}">
+                            <h:outputText value="Área exclusiva para usuários Premium!" />
             </p:outputPanel>
             <p:panelGrid columns="3" styleClass="p-mt-2 p-justify-center" rendered="#{premiumBean.isPremium()}">
                 <f:facet name="header">
